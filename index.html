@@ -426,7 +426,10 @@
   <header>
     <div class="brand">
       <h1>IRON<span>LOG</span></h1>
-      <div class="date-pill" id="todayLabel"></div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button id="bellBtn" title="Enable background alerts" style="background:none;border:1px solid var(--border);border-radius:999px;width:30px;height:30px;color:var(--text-dim);font-size:14px;cursor:pointer;">🔔</button>
+        <div class="date-pill" id="todayLabel"></div>
+      </div>
     </div>
     <div class="day-scroller" id="dayScroller"></div>
   </header>
@@ -495,31 +498,31 @@ const PROGRAM = {
   Monday: {
     focus: "Chest", subtitle: null,
     groups: [{ label:null, exercises: [
-      { name:"Barbell Bench Press", icon:"pressFlat", reps:"6–10", sets:4, restLabel:"2–3 min", restSec:150 },
-      { name:"Incline Dumbbell Press", icon:"pressIncline", reps:"8–12", sets:4, restLabel:"2 min", restSec:120 },
-      { name:"Decline Barbell Press", icon:"pressDecline", reps:"8–12", sets:3, restLabel:"2 min", restSec:120 },
-      { name:"Dumbbell Fly", icon:"fly", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
-      { name:"Butterfly / Pec Deck Machine", icon:"fly", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
-      { name:"Dumbbell Pullover", icon:"pullover", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
-      { name:"Push-Ups", icon:"pushup", reps:"Near Failure", sets:2, restLabel:"60–90 sec", restSec:75 },
+      { name:"Barbell Bench Press", icon:"pressFlat", reps:"6–10", sets:4, restLabel:"40 Sec", restSec:40 },
+      { name:"Incline Dumbbell Press", icon:"pressIncline", reps:"8–12", sets:4, restLabel:"40 Sec", restSec:40 },
+      { name:"Decline Barbell Press", icon:"pressDecline", reps:"8–12", sets:3, restLabel:"40 Sec", restSec:40 },
+      { name:"Dumbbell Fly", icon:"fly", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
+      { name:"Butterfly / Pec Deck Machine", icon:"fly", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
+      { name:"Dumbbell Pullover", icon:"pullover", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
+      { name:"Push-Ups", icon:"pushup", reps:"Near Failure", sets:2, restLabel:"40 Sec", restSec:40 },
     ]}]
   },
   Tuesday: {
     focus: "Arms", subtitle: "Biceps · Triceps · Forearms",
     groups: [
       { label:"Biceps", exercises: [
-        { name:"Barbell Curl", icon:"curl", reps:"8–12", sets:4, restLabel:"90 sec", restSec:90 },
-        { name:"Incline Dumbbell Curl", icon:"curl", reps:"8–12", sets:3, restLabel:"90 sec", restSec:90 },
-        { name:"Hammer Curl", icon:"curl", reps:"10–12", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Barbell Curl", icon:"curl", reps:"8–12", sets:4, restLabel:"40 Sec", restSec:40 },
+        { name:"Incline Dumbbell Curl", icon:"curl", reps:"8–12", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Hammer Curl", icon:"curl", reps:"10–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Triceps", exercises: [
-        { name:"Close-Grip Barbell Bench Press", icon:"pressFlat", reps:"6–10", sets:4, restLabel:"2 min", restSec:120 },
-        { name:"Overhead Dumbbell Triceps Extension", icon:"tricepsOverhead", reps:"10–12", sets:3, restLabel:"90 sec", restSec:90 },
-        { name:"Dumbbell Skull Crusher", icon:"tricepsOverhead", reps:"10–12", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Close-Grip Barbell Bench Press", icon:"pressFlat", reps:"6–10", sets:4, restLabel:"40 Sec", restSec:40 },
+        { name:"Overhead Dumbbell Triceps Extension", icon:"tricepsOverhead", reps:"10–12", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Dumbbell Skull Crusher", icon:"tricepsOverhead", reps:"10–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Forearms", exercises: [
-        { name:"Barbell Wrist Curl", icon:"wristCurl", reps:"12–15", sets:3, restLabel:"60 sec", restSec:60 },
-        { name:"Reverse Barbell Wrist Curl", icon:"wristCurl", reps:"12–15", sets:3, restLabel:"60 sec", restSec:60 },
+        { name:"Barbell Wrist Curl", icon:"wristCurl", reps:"12–15", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Reverse Barbell Wrist Curl", icon:"wristCurl", reps:"12–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
     ]
   },
@@ -527,20 +530,20 @@ const PROGRAM = {
     focus: "Back", subtitle: "Lower · Middle · Lats · Traps",
     groups: [
       { label:"Lower Back", exercises: [
-        { name:"Barbell Deadlift", icon:"deadlift", reps:"5–8", sets:4, restLabel:"2–3 min", restSec:150 },
+        { name:"Barbell Deadlift", icon:"deadlift", reps:"5–8", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Middle Back", exercises: [
-        { name:"Barbell Bent-Over Row", icon:"row", reps:"6–10", sets:4, restLabel:"2 min", restSec:120 },
+        { name:"Barbell Bent-Over Row", icon:"row", reps:"6–10", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Lats", exercises: [
-        { name:"One-Arm Dumbbell Row", icon:"row", reps:"8–12", sets:3, restLabel:"90 sec", restSec:90 },
-        { name:"Dumbbell Pullover", icon:"pullover", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"One-Arm Dumbbell Row", icon:"row", reps:"8–12", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Dumbbell Pullover", icon:"pullover", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Traps", exercises: [
-        { name:"Barbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Barbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Rear Back / Shoulders", exercises: [
-        { name:"Dumbbell Rear-Delt Row", icon:"row", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Dumbbell Rear-Delt Row", icon:"row", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
     ]
   },
@@ -548,20 +551,20 @@ const PROGRAM = {
     focus: "Shoulders", subtitle: null,
     groups: [
       { label:"Shoulders", exercises: [
-        { name:"Arnold Dumbbell Press", icon:"overheadPress", reps:"8–12", sets:4, restLabel:"2 min", restSec:120 },
+        { name:"Arnold Dumbbell Press", icon:"overheadPress", reps:"8–12", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Side Delts", exercises: [
-        { name:"Dumbbell Lateral Raise", icon:"raiseSide", reps:"10–15", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Dumbbell Lateral Raise", icon:"raiseSide", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Front Delts", exercises: [
-        { name:"Dumbbell Front Raise", icon:"raiseFront", reps:"10–15", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Dumbbell Front Raise", icon:"raiseFront", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Rear Delts", exercises: [
-        { name:"Dumbbell Rear-Delt Fly", icon:"rearFly", reps:"12–15", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Dumbbell Rear-Delt Fly", icon:"rearFly", reps:"12–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Traps", exercises: [
-        { name:"Dumbbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
-        { name:"Barbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Dumbbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Barbell Shrugs", icon:"shrug", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
     ]
   },
@@ -570,23 +573,23 @@ const PROGRAM = {
     focus: "Legs", subtitle: "Quads · Hamstrings · Glutes · Calves",
     groups: [
       { label:"Quads", exercises: [
-        { name:"Barbell Back Squat", icon:"squat", reps:"6–10", sets:4, restLabel:"2–3 min", restSec:150 },
+        { name:"Barbell Back Squat", icon:"squat", reps:"6–10", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Quads / Glutes", exercises: [
-        { name:"Dumbbell Bulgarian Split Squat", icon:"lunge", reps:"8–12", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Dumbbell Bulgarian Split Squat", icon:"lunge", reps:"8–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Quads", exercises: [
-        { name:"Dumbbell Goblet Squat", icon:"squat", reps:"10–15", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Dumbbell Goblet Squat", icon:"squat", reps:"10–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Hamstrings", exercises: [
-        { name:"Barbell Romanian Deadlift", icon:"deadlift", reps:"8–12", sets:4, restLabel:"2 min", restSec:120 },
+        { name:"Barbell Romanian Deadlift", icon:"deadlift", reps:"8–12", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Glutes", exercises: [
-        { name:"Dumbbell Walking Lunges", icon:"lunge", reps:"10–12/leg", sets:3, restLabel:"90 sec", restSec:90 },
-        { name:"Barbell Hip Thrust", icon:"hipThrust", reps:"8–12", sets:4, restLabel:"2 min", restSec:120 },
+        { name:"Dumbbell Walking Lunges", icon:"lunge", reps:"10–12/leg", sets:3, restLabel:"40 Sec", restSec:40 },
+        { name:"Barbell Hip Thrust", icon:"hipThrust", reps:"8–12", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Calves", exercises: [
-        { name:"Standing Dumbbell Calf Raise", icon:"calfRaise", reps:"12–20", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Standing Dumbbell Calf Raise", icon:"calfRaise", reps:"12–20", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
     ]
   },
@@ -594,25 +597,25 @@ const PROGRAM = {
     focus: "Full Body", subtitle: "Chest · Back · Shoulders · Arms",
     groups: [
       { label:"Upper Chest", exercises: [
-        { name:"Incline Barbell Bench Press", icon:"pressIncline", reps:"6–10", sets:4, restLabel:"2 min", restSec:120 },
+        { name:"Incline Barbell Bench Press", icon:"pressIncline", reps:"6–10", sets:4, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Lats", exercises: [
-        { name:"Pull-Ups / Chin-Ups", icon:"pullup", reps:"Near Failure", sets:3, restLabel:"2 min", restSec:120 },
+        { name:"Pull-Ups / Chin-Ups", icon:"pullup", reps:"Near Failure", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Shoulders", exercises: [
-        { name:"Dumbbell Shoulder Press", icon:"overheadPress", reps:"8–12", sets:3, restLabel:"2 min", restSec:120 },
+        { name:"Dumbbell Shoulder Press", icon:"overheadPress", reps:"8–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Back", exercises: [
-        { name:"One-Arm Dumbbell Row", icon:"row", reps:"10–12", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"One-Arm Dumbbell Row", icon:"row", reps:"10–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Side Delts", exercises: [
-        { name:"Dumbbell Lateral Raise", icon:"raiseSide", reps:"12–15", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Dumbbell Lateral Raise", icon:"raiseSide", reps:"12–15", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Biceps", exercises: [
-        { name:"Dumbbell Hammer Curl", icon:"curl", reps:"10–12", sets:3, restLabel:"90 sec", restSec:90 },
+        { name:"Dumbbell Hammer Curl", icon:"curl", reps:"10–12", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
       { label:"Triceps", exercises: [
-        { name:"Close-Grip Push-Ups", icon:"pushup", reps:"Near Failure", sets:3, restLabel:"60–90 sec", restSec:75 },
+        { name:"Close-Grip Push-Ups", icon:"pushup", reps:"Near Failure", sets:3, restLabel:"40 Sec", restSec:40 },
       ]},
     ]
   },
@@ -649,17 +652,50 @@ function ensureAudio(){
 function playBeep(){
   if (!audioCtx) return;
   const now = audioCtx.currentTime;
-  for (let i = 0; i < 3; i++){
+  for (let i = 0; i < 2; i++){
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = 880;
-    const t = now + i * 0.32;
+    osc.type = 'square';
+    osc.frequency.value = 440;
+    const t = now + i * 0.45;
     gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(0.35, t + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.26);
+    gain.gain.exponentialRampToValueAtTime(0.3, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
     osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.start(t); osc.stop(t + 0.28);
+    osc.start(t); osc.stop(t + 0.37);
+  }
+}
+
+/* ---------------- Wake Lock (keep screen on while resting) ---------------- */
+let wakeLock = null;
+async function requestWakeLock(){
+  try {
+    if ('wakeLock' in navigator){
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', () => { wakeLock = null; });
+    }
+  } catch(e){ /* not supported, or page not focused — fail silently */ }
+}
+function releaseWakeLock(){
+  if (wakeLock){ wakeLock.release(); wakeLock = null; }
+}
+// Re-acquire if the tab regains visibility mid-rest (OS auto-releases on hide)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && timerInterval) requestWakeLock();
+});
+
+/* ---------------- Notification fallback (if tab gets backgrounded) ---------------- */
+function askNotifyPermission(){
+  if ('Notification' in window && Notification.permission === 'default'){
+    Notification.requestPermission();
+  }
+}
+function notifyRestOver(name){
+  if ('Notification' in window && Notification.permission === 'granted' && document.hidden){
+    try {
+      const n = new Notification('Rest over 💪', { body: `Next set: ${name}`, tag: 'rest-timer' });
+      n.onclick = () => window.focus();
+    } catch(e){ /* ignore */ }
   }
 }
 
@@ -840,6 +876,8 @@ function startTimer(seconds, name){
   timerExNameEl.textContent = name;
   timerClock.textContent = formatClock(timerRemaining);
   timerBar.classList.add('show');
+  requestWakeLock();
+  currentTimerExName = name;
 
   timerInterval = setInterval(() => {
     timerRemaining--;
@@ -861,12 +899,17 @@ function finishTimer(){
   timerClock.textContent = "GO";
   playBeep();
   if (navigator.vibrate) navigator.vibrate([120,60,120]);
+  notifyRestOver(currentTimerExName);
+  releaseWakeLock();
 }
 
 function closeTimer(){
   clearInterval(timerInterval);
   timerBar.classList.remove('show');
+  releaseWakeLock();
 }
+
+let currentTimerExName = "";
 
 document.getElementById('timerClose').addEventListener('click', closeTimer);
 document.getElementById('timerPlus').addEventListener('click', () => {
@@ -879,6 +922,18 @@ document.getElementById('timerMinus').addEventListener('click', () => {
   timerRemaining = Math.max(0, timerRemaining - 15);
   timerClock.textContent = formatClock(timerRemaining);
   if (timerRemaining === 0) finishTimer();
+});
+
+document.getElementById('bellBtn').addEventListener('click', () => {
+  askNotifyPermission();
+  ensureAudio();
+  const btn = document.getElementById('bellBtn');
+  if ('Notification' in window){
+    setTimeout(() => {
+      if (Notification.permission === 'granted'){ btn.textContent = '🔔'; btn.style.color = 'var(--accent)'; btn.style.borderColor = 'var(--accent-dim)'; }
+      else if (Notification.permission === 'denied'){ btn.textContent = '🔕'; }
+    }, 300);
+  }
 });
 
 /* ---------------- Init ---------------- */
