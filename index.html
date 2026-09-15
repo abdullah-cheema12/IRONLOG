@@ -641,6 +641,51 @@ DAY_ORDER.forEach(day => {
   completion[day] = flattenExercises(day).map(ex => new Array(ex.sets).fill(false));
 });
 
+/* ---------------- Persistence (remember progress across reloads) ---------------- */
+const hasClaudeStorage = (typeof window !== 'undefined') && !!window.storage;
+const LS_KEY = 'ironlog_state_v1';
+
+async function saveState(){
+  const payload = JSON.stringify({ activeDay, completion });
+  if (hasClaudeStorage){
+    try { await window.storage.set('state', payload, false); return; } catch(e){ /* fall through */ }
+  }
+  try { localStorage.setItem(LS_KEY, payload); } catch(e){ /* storage unavailable — ignore */ }
+}
+
+async function loadState(){
+  if (hasClaudeStorage){
+    try {
+      const r = await window.storage.get('state', false);
+      if (r && r.value) return JSON.parse(r.value);
+    } catch(e){ /* no saved state yet, or storage error — fall through */ }
+  }
+  try {
+    const v = localStorage.getItem(LS_KEY);
+    if (v) return JSON.parse(v);
+  } catch(e){ /* ignore */ }
+  return null;
+}
+
+async function restoreState(){
+  const saved = await loadState();
+  if (!saved) return;
+  if (saved.activeDay && PROGRAM[saved.activeDay]) activeDay = saved.activeDay;
+  if (saved.completion){
+    DAY_ORDER.forEach(day => {
+      const flat = flattenExercises(day);
+      const savedDay = saved.completion[day];
+      if (Array.isArray(savedDay) && savedDay.length === flat.length){
+        completion[day] = flat.map((ex, i) =>
+          Array.isArray(savedDay[i]) && savedDay[i].length === ex.sets
+            ? savedDay[i].map(Boolean)
+            : new Array(ex.sets).fill(false)
+        );
+      }
+    });
+  }
+}
+
 /* ---------------- Audio (beep on rest end) ---------------- */
 let audioCtx = null;
 function ensureAudio(){
@@ -723,7 +768,7 @@ function renderDayScroller(){
       + (day === todayName ? ' today' : '')
       + (isRestDay ? ' rest-day' : '');
     pill.innerHTML = `<span class="d">${DAY_SHORT[day]}</span><span class="m">${PILL_LABEL[day]}</span>`;
-    pill.addEventListener('click', () => { activeDay = day; renderAll(); });
+    pill.addEventListener('click', () => { activeDay = day; renderAll(); saveState(); });
     dayScroller.appendChild(pill);
   });
 }
@@ -765,6 +810,7 @@ function renderSession(){
   document.getElementById('resetBtn').addEventListener('click', () => {
     completion[activeDay] = flat.map(ex => new Array(ex.sets).fill(false));
     renderAll();
+    saveState();
   });
 }
 
@@ -828,6 +874,7 @@ function renderCard(ex, index){
       if (!wasOn) startTimer(ex.restSec, ex.name);
       renderSession();
       renderList();
+      saveState();
     });
   });
 
@@ -841,6 +888,7 @@ function renderCard(ex, index){
         startTimer(ex.restSec, ex.name);
         renderSession();
         renderList();
+        saveState();
       }
     });
   }
@@ -937,7 +985,10 @@ document.getElementById('bellBtn').addEventListener('click', () => {
 });
 
 /* ---------------- Init ---------------- */
-renderAll();
+(async function init(){
+  await restoreState();
+  renderAll();
+})();
 </script>
 </body>
 </html>
