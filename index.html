@@ -652,7 +652,7 @@ function ensureAudio(){
 function playBeep(){
   if (!audioCtx) return;
   const now = audioCtx.currentTime;
-  for (let i = 0; i < 2; i++){
+  for (let i = 0; i < 5; i++){
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = 'square';
